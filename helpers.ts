@@ -4,7 +4,7 @@ import { NewOrUpdatedEntity, ResponseStructure } from './types';
 import { headers, InvalidItemError } from './constants';
 
 const ExampleNewOrUpdatedEntity: NewOrUpdatedEntity = {
-    name: '',
+    playername: '',
     time: 0,
     word: '',
 };

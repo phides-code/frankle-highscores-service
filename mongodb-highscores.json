@@ -1,0 +1,122 @@
+[
+    {
+        "_id": { "$oid": "63bdc3496b4ccacc77111b36" },
+        "name": "Moe",
+        "time": 48473,
+        "word": "JOKED"
+    },
+    {
+        "_id": { "$oid": "63bdda64363dfa8a96e3bca0" },
+        "name": "Tbone",
+        "time": 26403,
+        "word": "MANED"
+    },
+    {
+        "_id": { "$oid": "63be1c16f678c0dc0b576c8c" },
+        "name": "Worf",
+        "time": 21239,
+        "word": "STACK"
+    },
+    {
+        "_id": { "$oid": "63be4e46fa191c492cd436c7" },
+        "name": "Negar",
+        "time": 36348,
+        "word": "EBOLA"
+    },
+    {
+        "_id": { "$oid": "63bed027fa191c492cd436cf" },
+        "name": "bob",
+        "time": 23799,
+        "word": "PECAN"
+    },
+    {
+        "_id": { "$oid": "63c025c8fa191c492cd436d1" },
+        "name": "JD",
+        "time": 17901,
+        "word": "ENACT"
+    },
+    {
+        "_id": { "$oid": "63c0c513fa191c492cd436d4" },
+        "name": "Thrillho",
+        "time": 22451,
+        "word": "PARKS"
+    },
+    {
+        "_id": { "$oid": "63c0d980fa191c492cd436d6" },
+        "name": "Edc",
+        "time": 8704,
+        "word": "SLIDE"
+    },
+    {
+        "_id": { "$oid": "63c2fb07fa191c492cd436d8" },
+        "name": "Bobo",
+        "time": 18552,
+        "word": "PLOYS"
+    },
+    {
+        "_id": { "$oid": "63c4ad5cfa191c492cd436d9" },
+        "name": "Miko",
+        "time": 31968,
+        "word": "MATHS"
+    },
+    {
+        "_id": { "$oid": "63d3ea70fa191c492cd436db" },
+        "name": "chef",
+        "time": 18117,
+        "word": "PINKS"
+    },
+    {
+        "_id": { "$oid": "63e1d31afa191c492cd436dc" },
+        "name": "Lisa",
+        "time": 34833,
+        "word": "COUGH"
+    },
+    {
+        "_id": { "$oid": "63ebb429fa191c492cd436dd" },
+        "name": "Teen",
+        "time": 42818,
+        "word": "QUAIL"
+    },
+    {
+        "_id": { "$oid": "63ec0b81fa191c492cd436de" },
+        "name": "Richard",
+        "time": 42799,
+        "word": "PHAGE"
+    },
+    {
+        "_id": { "$oid": "63f2572efa191c492cd436e0" },
+        "name": "Hobo",
+        "time": 6760,
+        "word": "DROPS"
+    },
+    {
+        "_id": { "$oid": "642ab9e7fa191c492cd436e1" },
+        "name": "Don",
+        "time": 22996,
+        "word": "BATHS"
+    },
+    {
+        "_id": { "$oid": "6445af39fa191c492cd436e2" },
+        "name": "Hst",
+        "time": 39518,
+        "word": "TOWEL"
+    },
+    {
+        "_id": { "$oid": "6490d2dc2b07d98d599fbc84" },
+        "name": "A",
+        "time": 20914,
+        "word": "SHACK"
+    },
+    {
+        "_id": { "$oid": "64bbde192b07d98d599fbc85" },
+        "name": "Sha",
+        "time": 18104,
+        "word": "CHOSE"
+    },
+    {
+        "_id": { "$oid": "6537cf1507333f496e1f240f" },
+        "name": "Pea",
+        "time": 8732,
+        "word": "DEPOT"
+    }
+]
