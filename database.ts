@@ -7,7 +7,7 @@ import {
 } from '@aws-sdk/lib-dynamodb';
 import { Entity, LambdaHandlerParams, NewOrUpdatedEntity } from './types';
 import { buildEntityFields } from './helpers';
-import { InvalidItemError, TableName } from './constants';
+import { TableName } from './constants';
 import { randomUUID } from 'crypto';
 
 const client = new DynamoDBClient({});
@@ -25,6 +25,33 @@ export const listEntities = async () => {
     return response.Items as Entity[];
 };
 
+const getWorstHighScore = async (): Promise<Entity | null> => {
+    const allHighScores = await listEntities();
+
+    if (allHighScores.length < 20) {
+        return null;
+    }
+
+    return allHighScores.reduce((a, b) => (b.wintime > a.wintime ? b : a));
+};
+
+const deleteWorstHighscore = async () => {
+    const worstHighscore = await getWorstHighScore();
+
+    if (!worstHighscore) {
+        return;
+    }
+
+    console.log('deleting worstHighscore:', worstHighscore);
+
+    const command = new DeleteCommand({
+        TableName: TableName,
+        Key: { id: worstHighscore.id },
+    });
+
+    await docClient.send(command);
+};
+
 export const insertEntity = async (handlerParams: LambdaHandlerParams) => {
     const { event } = handlerParams;
 
@@ -35,6 +62,8 @@ export const insertEntity = async (handlerParams: LambdaHandlerParams) => {
         ...newEntity,
     };
 
+    await deleteWorstHighscore();
+
     const command = new PutCommand({
         TableName: TableName,
         Item: newEntityWithId,
@@ -43,25 +72,4 @@ export const insertEntity = async (handlerParams: LambdaHandlerParams) => {
     await docClient.send(command);
 
     return newEntityWithId;
-};
-
-export const deleteEntity = async (handlerParams: LambdaHandlerParams) => {
-    const { event } = handlerParams;
-    const id: string = event.pathParameters?.id as string;
-
-    const command = new DeleteCommand({
-        TableName: TableName,
-        Key: {
-            id,
-        },
-        ReturnValues: 'ALL_OLD',
-    });
-
-    const response = await docClient.send(command);
-
-    if (!response.Attributes) {
-        throw new Error(InvalidItemError);
-    }
-
-    return response.Attributes as Entity;
 };
