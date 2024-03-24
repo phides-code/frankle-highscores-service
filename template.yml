@@ -1,0 +1,61 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+
+Resources:
+  FrankleHighscoresService:
+    Type: AWS::Serverless::Api
+    Description: "Serverless API for CRUD operations"
+    Properties:
+      Name: "frankle-highscores-service"
+      StageName: Prod
+      Cors:
+        AllowMethods: "'OPTIONS, POST, GET'"
+        AllowHeaders: "'Content-Type'"
+        AllowOrigin: "'http://localhost:3000'" # replace with frontend app URL
+
+  FrankleHighscoresFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Timeout: 10
+      Handler: dist/index.lambdaHandler
+      Runtime: nodejs20.x
+      Policies:
+        - AWSLambdaExecute
+        - SecretsManagerReadWrite
+        - DynamoDBCrudPolicy:
+            TableName: !Ref FrankleHighscoresTable
+      Events:
+        HighscoresOptions:
+          Type: Api
+          Properties:
+            Path: /highscores
+            Method: OPTIONS
+            RestApiId: !Ref FrankleHighscoresService
+        GetHighscores:
+          Type: Api
+          Properties:
+            Path: /highscores
+            Method: GET
+            RestApiId: !Ref FrankleHighscoresService
+        PutHighscore:
+          Type: Api
+          Properties:
+            Path: /highscores
+            Method: POST
+            RestApiId: !Ref FrankleHighscoresService
+    Metadata:
+      BuildMethod: makefile
+
+  FrankleHighscoresTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: FrankleHighscores
+      AttributeDefinitions:
+        - AttributeName: id
+          AttributeType: S
+      KeySchema:
+        - AttributeName: id
+          KeyType: HASH
+      ProvisionedThroughput:
+        ReadCapacityUnits: 2
+        WriteCapacityUnits: 2
