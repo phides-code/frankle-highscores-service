@@ -5,7 +5,7 @@ import { headers, InvalidItemError } from './constants';
 
 const ExampleNewOrUpdatedEntity: NewOrUpdatedEntity = {
     playername: '',
-    time: 0,
+    wintime: 0,
     word: '',
 };
 

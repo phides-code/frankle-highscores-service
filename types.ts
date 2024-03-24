@@ -2,7 +2,7 @@ import { APIGatewayEvent, APIGatewayProxyCallback } from 'aws-lambda';
 
 export interface NewOrUpdatedEntity {
     playername: string;
-    time: number;
+    wintime: number;
     word: string;
 }
 

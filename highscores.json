@@ -5,7 +5,7 @@
                 "Item": {
                     "id": { "S": "63bdc3496b4ccacc77111b36" },
                     "playername": { "S": "Moe" },
-                    "time": { "N": "48473" },
+                    "wintime": { "N": "48473" },
                     "word": { "S": "JOKED" }
                 }
             }
@@ -15,7 +15,7 @@
                 "Item": {
                     "id": { "S": "63bdda64363dfa8a96e3bca0" },
                     "playername": { "S": "Tbone" },
-                    "time": { "N": "26403" },
+                    "wintime": { "N": "26403" },
                     "word": { "S": "MANED" }
                 }
             }
@@ -25,7 +25,7 @@
                 "Item": {
                     "id": { "S": "63be1c16f678c0dc0b576c8c" },
                     "playername": { "S": "Worf" },
-                    "time": { "N": "21239" },
+                    "wintime": { "N": "21239" },
                     "word": { "S": "STACK" }
                 }
             }
@@ -35,7 +35,7 @@
                 "Item": {
                     "id": { "S": "63be4e46fa191c492cd436c7" },
                     "playername": { "S": "Negar" },
-                    "time": { "N": "36348" },
+                    "wintime": { "N": "36348" },
                     "word": { "S": "EBOLA" }
                 }
             }
@@ -45,7 +45,7 @@
                 "Item": {
                     "id": { "S": "63bed027fa191c492cd436cf" },
                     "playername": { "S": "bob" },
-                    "time": { "N": "23799" },
+                    "wintime": { "N": "23799" },
                     "word": { "S": "PECAN" }
                 }
             }
@@ -55,7 +55,7 @@
                 "Item": {
                     "id": { "S": "63c025c8fa191c492cd436d1" },
                     "playername": { "S": "JD" },
-                    "time": { "N": "17901" },
+                    "wintime": { "N": "17901" },
                     "word": { "S": "ENACT" }
                 }
             }
@@ -65,7 +65,7 @@
                 "Item": {
                     "id": { "S": "63c0c513fa191c492cd436d4" },
                     "playername": { "S": "Thrillho" },
-                    "time": { "N": "22451" },
+                    "wintime": { "N": "22451" },
                     "word": { "S": "PARKS" }
                 }
             }
@@ -75,7 +75,7 @@
                 "Item": {
                     "id": { "S": "63c0d980fa191c492cd436d6" },
                     "playername": { "S": "Edc" },
-                    "time": { "N": "8704" },
+                    "wintime": { "N": "8704" },
                     "word": { "S": "SLIDE" }
                 }
             }
@@ -85,7 +85,7 @@
                 "Item": {
                     "id": { "S": "63c2fb07fa191c492cd436d8" },
                     "playername": { "S": "Bobo" },
-                    "time": { "N": "18552" },
+                    "wintime": { "N": "18552" },
                     "word": { "S": "PLOYS" }
                 }
             }
@@ -95,7 +95,7 @@
                 "Item": {
                     "id": { "S": "63c4ad5cfa191c492cd436d9" },
                     "playername": { "S": "Miko" },
-                    "time": { "N": "31968" },
+                    "wintime": { "N": "31968" },
                     "word": { "S": "MATHS" }
                 }
             }
@@ -105,7 +105,7 @@
                 "Item": {
                     "id": { "S": "63d3ea70fa191c492cd436db" },
                     "playername": { "S": "chef" },
-                    "time": { "N": "18117" },
+                    "wintime": { "N": "18117" },
                     "word": { "S": "PINKS" }
                 }
             }
@@ -115,7 +115,7 @@
                 "Item": {
                     "id": { "S": "63e1d31afa191c492cd436dc" },
                     "playername": { "S": "Lisa" },
-                    "time": { "N": "34833" },
+                    "wintime": { "N": "34833" },
                     "word": { "S": "COUGH" }
                 }
             }
@@ -125,7 +125,7 @@
                 "Item": {
                     "id": { "S": "63ebb429fa191c492cd436dd" },
                     "playername": { "S": "Teen" },
-                    "time": { "N": "42818" },
+                    "wintime": { "N": "42818" },
                     "word": { "S": "QUAIL" }
                 }
             }
@@ -135,7 +135,7 @@
                 "Item": {
                     "id": { "S": "63ec0b81fa191c492cd436de" },
                     "playername": { "S": "Richard" },
-                    "time": { "N": "42799" },
+                    "wintime": { "N": "42799" },
                     "word": { "S": "PHAGE" }
                 }
             }
@@ -145,7 +145,7 @@
                 "Item": {
                     "id": { "S": "63f2572efa191c492cd436e0" },
                     "playername": { "S": "Hobo" },
-                    "time": { "N": "6760" },
+                    "wintime": { "N": "6760" },
                     "word": { "S": "DROPS" }
                 }
             }
@@ -155,7 +155,7 @@
                 "Item": {
                     "id": { "S": "642ab9e7fa191c492cd436e1" },
                     "playername": { "S": "Don" },
-                    "time": { "N": "22996" },
+                    "wintime": { "N": "22996" },
                     "word": { "S": "BATHS" }
                 }
             }
@@ -165,7 +165,7 @@
                 "Item": {
                     "id": { "S": "6445af39fa191c492cd436e2" },
                     "playername": { "S": "Hst" },
-                    "time": { "N": "39518" },
+                    "wintime": { "N": "39518" },
                     "word": { "S": "TOWEL" }
                 }
             }
@@ -175,7 +175,7 @@
                 "Item": {
                     "id": { "S": "6490d2dc2b07d98d599fbc84" },
                     "playername": { "S": "A" },
-                    "time": { "N": "20914" },
+                    "wintime": { "N": "20914" },
                     "word": { "S": "SHACK" }
                 }
             }
@@ -185,7 +185,7 @@
                 "Item": {
                     "id": { "S": "64bbde192b07d98d599fbc85" },
                     "playername": { "S": "Sha" },
-                    "time": { "N": "18104" },
+                    "wintime": { "N": "18104" },
                     "word": { "S": "CHOSE" }
                 }
             }
@@ -195,7 +195,7 @@
                 "Item": {
                     "id": { "S": "6537cf1507333f496e1f240f" },
                     "playername": { "S": "Pea" },
-                    "time": { "N": "8732" },
+                    "wintime": { "N": "8732" },
                     "word": { "S": "DEPOT" }
                 }
             }
