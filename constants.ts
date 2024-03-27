@@ -1,5 +1,5 @@
 // customize OriginURL, ApiPath, and TableName
-export const OriginURL = 'http://localhost:3000';
+export const OriginURL = 'https://frankle.phil-code.com';
 
 export const ApiPath = 'highscores';
 
