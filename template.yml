@@ -18,7 +18,7 @@ Resources:
     Properties:
       Timeout: 10
       Handler: dist/index.lambdaHandler
-      Runtime: nodejs20.x
+      Runtime: nodejs22.x
       Policies:
         - AWSLambdaExecute
         - SecretsManagerReadWrite
