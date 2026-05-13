@@ -1,4 +1,3 @@
-import { APIGatewayProxyCallback } from 'aws-lambda';
 import { ApiPath, headers, localMode } from './constants';
 import { insertEntity, listEntities } from './database';
 import {
@@ -10,36 +9,35 @@ import {
 import { Entity, LambdaHandlerParams, ResponseStructure } from './types';
 
 export const router = async (handlerParams: LambdaHandlerParams) => {
-    const { event, callback } = handlerParams;
+    const { event } = handlerParams;
 
     if (!localMode) {
         const awsCfToken = process.env.AWS_CF_TOKEN;
 
         if (awsCfToken === '') {
-            return serverError('Error reading token', callback);
+            return serverError('Error reading token');
         }
 
         const providedCfToken = event.headers['X-CF-Token'];
 
         if (!providedCfToken || providedCfToken !== awsCfToken) {
-            return clientError(403, 'token mismatch', callback);
+            return clientError(403, 'token mismatch');
         }
     }
 
     switch (event.httpMethod) {
         case 'GET':
-            return processGet(handlerParams);
+            return processGet();
         case 'POST':
             return processPost(handlerParams);
         case 'OPTIONS':
-            return processOptions(callback);
+            return processOptions();
         default:
-            return clientError(405, 'method not allowed', callback);
+            return clientError(405, 'method not allowed');
     }
 };
 
-const processGet = async (handlerParams: LambdaHandlerParams) => {
-    const { callback } = handlerParams;
+const processGet = async () => {
     try {
         const entities: Entity[] = (await listEntities()) as Entity[];
 
@@ -48,24 +46,24 @@ const processGet = async (handlerParams: LambdaHandlerParams) => {
             errorMessage: null,
         };
 
-        return callback(null, {
+        return {
             statusCode: 200,
             body: JSON.stringify(response),
             headers,
-        });
+        };
     } catch (err) {
-        handleError('processGet', err as Error, callback);
+        handleError('processGet', err as Error);
     }
 };
 
 const processPost = async (handlerParams: LambdaHandlerParams) => {
-    const { callback, event } = handlerParams;
+    const { event } = handlerParams;
     try {
         const newEntity = JSON.parse(event.body as string);
 
         if (!validateEntity(newEntity)) {
             console.log('invalid newEntity');
-            return clientError(400, 'invalid entity', callback);
+            return clientError(400, 'invalid entity');
         }
 
         const entity: Entity = (await insertEntity(handlerParams)) as Entity;
@@ -79,25 +77,25 @@ const processPost = async (handlerParams: LambdaHandlerParams) => {
             Location: `/${ApiPath}/${entity.id}`,
         };
 
-        return callback(null, {
+        return {
             statusCode: 201,
             body: JSON.stringify(response),
             headers: { ...headers, ...locationHeader },
-        });
+        };
     } catch (err) {
-        handleError('processPost', err as Error, callback);
+        handleError('processPost', err as Error);
     }
 };
 
-const processOptions = async (callback: APIGatewayProxyCallback) => {
+const processOptions = async () => {
     const corsHeaders = {
         'Access-Control-Allow-Methods': 'OPTIONS, POST, GET',
         'Access-Control-Max-Age': '3600',
     };
 
-    return callback(null, {
+    return {
         statusCode: 200,
         body: '',
         headers: { ...headers, ...corsHeaders },
-    });
+    };
 };

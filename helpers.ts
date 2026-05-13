@@ -1,4 +1,3 @@
-import { APIGatewayProxyCallback } from 'aws-lambda';
 import { NewOrUpdatedEntity, ResponseStructure } from './types';
 import { headers, InvalidItemError } from './constants';
 
@@ -25,52 +24,41 @@ export const validateEntity = (entity: any): boolean => {
     return true;
 };
 
-export const handleError = (
-    process: string,
-    error: Error,
-    callback: APIGatewayProxyCallback,
-) => {
+export const handleError = (process: string, error: Error) => {
     const errorMessage = error.message;
     console.log(process, 'caught error:', errorMessage);
 
     if (errorMessage === InvalidItemError) {
-        return clientError(400, 'Invalid item', callback);
+        return clientError(400, 'Invalid item');
     }
 
-    return serverError(errorMessage, callback);
+    return serverError(errorMessage);
 };
 
-export const clientError = (
-    httpStatus: number,
-    errorMessage: string,
-    callback: APIGatewayProxyCallback,
-) => {
+export const clientError = (httpStatus: number, errorMessage: string) => {
     const response: ResponseStructure = {
         data: null,
         errorMessage,
     };
 
-    return callback(null, {
+    return {
         statusCode: httpStatus,
         body: JSON.stringify(response),
         headers,
-    });
+    };
 };
 
-export const serverError = (
-    errorMessage: string,
-    callback: APIGatewayProxyCallback,
-) => {
+export const serverError = (errorMessage: string) => {
     const response: ResponseStructure = {
         data: null,
         errorMessage,
     };
 
-    return callback(null, {
+    return {
         statusCode: 500,
         body: JSON.stringify(response),
         headers,
-    });
+    };
 };
 
 export const buildEntityFields = () => {

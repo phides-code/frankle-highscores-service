@@ -1,4 +1,4 @@
-import { APIGatewayEvent, APIGatewayProxyCallback } from 'aws-lambda';
+import { APIGatewayEvent } from 'aws-lambda';
 
 export interface NewOrUpdatedEntity {
     playername: string;
@@ -12,7 +12,6 @@ export interface Entity extends NewOrUpdatedEntity {
 
 export interface LambdaHandlerParams {
     event: APIGatewayEvent;
-    callback: APIGatewayProxyCallback;
 }
 
 export interface ResponseStructure {
