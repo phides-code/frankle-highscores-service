@@ -52,7 +52,7 @@ const processGet = async () => {
             headers,
         };
     } catch (err) {
-        handleError('processGet', err as Error);
+        return handleError('processGet', err as Error);
     }
 };
 
@@ -83,7 +83,7 @@ const processPost = async (handlerParams: LambdaHandlerParams) => {
             headers: { ...headers, ...locationHeader },
         };
     } catch (err) {
-        handleError('processPost', err as Error);
+        return handleError('processPost', err as Error);
     }
 };
 
