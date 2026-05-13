@@ -21,7 +21,7 @@ jobs:
             - name: Setup Node.js environment
               uses: actions/setup-node@v6
               with:
-                  node-version: '22'
+                  node-version: '24'
 
             - name: Install dependencies
               run: npm install
@@ -39,3 +39,6 @@ jobs:
             - name: Deploy with SAM
               run: |
                   sam deploy --stack-name ${{ env.SAM_STACK_NAME }} --region ${{ env.SAM_REGION }} --capabilities ${{ env.SAM_CAPABILITIES }} --resolve-s3 --no-confirm-changeset --no-fail-on-empty-changeset
+              env:
+                  AWS_CF_TOKEN: ${{ secrets.AWS_CF_TOKEN }}
+## todo

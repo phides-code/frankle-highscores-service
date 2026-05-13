@@ -1,11 +1,30 @@
 import { APIGatewayProxyCallback } from 'aws-lambda';
-import { ApiPath, headers } from './constants';
+import { ApiPath, headers, localMode } from './constants';
 import { insertEntity, listEntities } from './database';
-import { clientError, handleError, validateEntity } from './helpers';
+import {
+    clientError,
+    handleError,
+    serverError,
+    validateEntity,
+} from './helpers';
 import { Entity, LambdaHandlerParams, ResponseStructure } from './types';
 
 export const router = async (handlerParams: LambdaHandlerParams) => {
     const { event, callback } = handlerParams;
+
+    if (!localMode) {
+        const awsCfToken = process.env.AWS_CF_TOKEN;
+
+        if (awsCfToken === '') {
+            return serverError('Error reading token', callback);
+        }
+
+        const providedCfToken = event.headers['X-CF-Token'];
+
+        if (!providedCfToken || providedCfToken !== awsCfToken) {
+            return clientError(403, 'token mismatch', callback);
+        }
+    }
 
     switch (event.httpMethod) {
         case 'GET':
@@ -15,8 +34,7 @@ export const router = async (handlerParams: LambdaHandlerParams) => {
         case 'OPTIONS':
             return processOptions(callback);
         default:
-            // method not allowed
-            return clientError(405, callback);
+            return clientError(405, 'method not allowed', callback);
     }
 };
 
@@ -47,7 +65,7 @@ const processPost = async (handlerParams: LambdaHandlerParams) => {
 
         if (!validateEntity(newEntity)) {
             console.log('invalid newEntity');
-            return clientError(400, callback);
+            return clientError(400, 'invalid entity', callback);
         }
 
         const entity: Entity = (await insertEntity(handlerParams)) as Entity;

@@ -1,6 +1,12 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 
+Parameters:
+  AwsCfToken:
+    Type: String
+    NoEcho: true
+    Description: Token for API auth (e.g. Cloudflare or custom); set via --parameter-overrides AwsCfToken=xxx when deploying
+
 Resources:
   FrankleHighscoresService:
     Type: AWS::Serverless::Api
@@ -10,18 +16,28 @@ Resources:
       StageName: Prod
       Cors:
         AllowMethods: "'OPTIONS, POST, GET'"
-        AllowHeaders: "'Content-Type'"
+        AllowHeaders: "'Content-Type, X-CF-Token'"
         AllowOrigin: "'https://frankle.phil-code.com'" # replace with frontend app URL
+
+      # Logging settings
+      MethodSettings:
+        - LoggingLevel: INFO
+          ResourcePath: "/*"
+          HttpMethod: "*"
+          MetricsEnabled: true
+          DataTraceEnabled: true        
 
   FrankleHighscoresFunction:
     Type: AWS::Serverless::Function
     Properties:
       Timeout: 10
       Handler: dist/index.lambdaHandler
-      Runtime: nodejs22.x
+      Runtime: nodejs24.x
+      Environment:
+        Variables:
+          AWS_CF_TOKEN: !Ref AwsCfToken  # comes from --parameter-overrides      
       Policies:
         - AWSLambdaExecute
-        - SecretsManagerReadWrite
         - DynamoDBCrudPolicy:
             TableName: !Ref FrankleHighscoresTable
       Events:

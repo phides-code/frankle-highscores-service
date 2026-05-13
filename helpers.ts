@@ -1,5 +1,4 @@
 import { APIGatewayProxyCallback } from 'aws-lambda';
-import * as http from 'http';
 import { NewOrUpdatedEntity, ResponseStructure } from './types';
 import { headers, InvalidItemError } from './constants';
 
@@ -29,26 +28,23 @@ export const validateEntity = (entity: any): boolean => {
 export const handleError = (
     process: string,
     error: Error,
-    callback: APIGatewayProxyCallback
+    callback: APIGatewayProxyCallback,
 ) => {
     const errorMessage = error.message;
     console.log(process, 'caught error:', errorMessage);
 
     if (errorMessage === InvalidItemError) {
-        return clientError(400, callback);
+        return clientError(400, 'Invalid item', callback);
     }
 
-    return serverError(callback);
+    return serverError(errorMessage, callback);
 };
 
 export const clientError = (
     httpStatus: number,
-    callback: APIGatewayProxyCallback
+    errorMessage: string,
+    callback: APIGatewayProxyCallback,
 ) => {
-    console.log('send client error message');
-    const errorMessage: string =
-        http.STATUS_CODES[httpStatus] || 'Unknown Status';
-
     const response: ResponseStructure = {
         data: null,
         errorMessage,
@@ -61,10 +57,10 @@ export const clientError = (
     });
 };
 
-export const serverError = (callback: APIGatewayProxyCallback) => {
-    console.log('send server error message');
-    const errorMessage: string = http.STATUS_CODES[500] as string;
-
+export const serverError = (
+    errorMessage: string,
+    callback: APIGatewayProxyCallback,
+) => {
     const response: ResponseStructure = {
         data: null,
         errorMessage,
