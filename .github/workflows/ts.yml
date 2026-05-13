@@ -38,7 +38,6 @@ jobs:
 
             - name: Deploy with SAM
               run: |
-                  sam deploy --stack-name ${{ env.SAM_STACK_NAME }} --region ${{ env.SAM_REGION }} --capabilities ${{ env.SAM_CAPABILITIES }} --resolve-s3 --no-confirm-changeset --no-fail-on-empty-changeset
+                  make deploy
               env:
                   AWS_CF_TOKEN: ${{ secrets.AWS_CF_TOKEN }}
-## todo

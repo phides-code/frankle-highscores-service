@@ -9,11 +9,11 @@ build-FrankleHighscoresFunction:
 
 .PHONY: init
 init: build
-	sam deploy --parameter-overrides AwsCfToken="$(AWS_CF_TOKEN)"
+	sam deploy --guided
 
 .PHONY: deploy
 deploy: build
-	sam deploy
+	sam deploy --parameter-overrides AwsCfToken="$(AWS_CF_TOKEN)"
 
 .PHONY: delete
 delete:
